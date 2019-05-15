@@ -22,16 +22,18 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAut
 import org.springframework.boot.autoconfigure.security.servlet.SecurityRequestMatcherProviderAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * @author Dave Syer
  *
  */
 @Configuration(proxyBeanMethods = false)
+@Import(WebMvcConfigurations.class)
 @ImportAutoConfiguration({ SecurityAutoConfiguration.class,
 		UserDetailsServiceAutoConfiguration.class,
 		SecurityRequestMatcherProviderAutoConfiguration.class,
-		SecurityFilterAutoConfiguration.class, WebMvcConfigurations.class })
+		SecurityFilterAutoConfiguration.class })
 public class ServletSecurityConfigurations {
 
 }

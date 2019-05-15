@@ -20,14 +20,16 @@ import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.reactive.ReactiveUserDetailsServiceAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * @author Dave Syer
  *
  */
 @Configuration(proxyBeanMethods = false)
+@Import(WebFluxConfigurations.class)
 @ImportAutoConfiguration({ ReactiveSecurityAutoConfiguration.class,
-		ReactiveUserDetailsServiceAutoConfiguration.class, WebFluxConfigurations.class })
+		ReactiveUserDetailsServiceAutoConfiguration.class })
 public class ReactiveSecurityConfigurations {
 
 }

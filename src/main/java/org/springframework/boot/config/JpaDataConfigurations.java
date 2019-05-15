@@ -19,14 +19,15 @@ package org.springframework.boot.config;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * @author Dave Syer
  *
  */
 @Configuration(proxyBeanMethods = false)
-@ImportAutoConfiguration({ JpaRepositoriesAutoConfiguration.class,
-		HibernateConfigurations.class })
+@Import(HibernateConfigurations.class)
+@ImportAutoConfiguration({ JpaRepositoriesAutoConfiguration.class })
 public class JpaDataConfigurations {
 
 }

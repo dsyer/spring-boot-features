@@ -24,18 +24,22 @@ import org.springframework.boot.actuate.autoconfigure.info.InfoEndpointAutoConfi
 import org.springframework.boot.actuate.autoconfigure.web.reactive.ReactiveManagementContextAutoConfiguration;
 import org.springframework.boot.actuate.autoconfigure.web.server.ManagementContextAutoConfiguration;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * @author Dave Syer
  *
  */
+@ConditionalOnClass(name = "org.springframework.boot.actuate.endpoint.annotation.Endpoint")
 @Configuration(proxyBeanMethods = false)
+@Import(BasicConfigurations.class)
 @ImportAutoConfiguration({ EndpointAutoConfiguration.class,
 		HealthIndicatorAutoConfiguration.class, HealthEndpointAutoConfiguration.class,
 		InfoEndpointAutoConfiguration.class, WebEndpointAutoConfiguration.class,
 		ReactiveManagementContextAutoConfiguration.class,
-		ManagementContextAutoConfiguration.class, BasicConfigurations.class })
+		ManagementContextAutoConfiguration.class })
 public class HealthEndpointConfigurations {
 
 }

@@ -22,15 +22,17 @@ import org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactor
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * @author Dave Syer
  *
  */
 @Configuration(proxyBeanMethods = false)
+@Import(BasicConfigurations.class)
 @ImportAutoConfiguration({ WebMvcAutoConfiguration.class,
 		ServletWebServerFactoryAutoConfiguration.class, ErrorMvcAutoConfiguration.class,
-		DispatcherServletAutoConfiguration.class, BasicConfigurations.class })
+		DispatcherServletAutoConfiguration.class })
 public class WebMvcConfigurations {
 
 }

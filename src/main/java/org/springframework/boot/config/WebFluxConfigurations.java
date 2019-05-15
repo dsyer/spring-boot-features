@@ -22,16 +22,17 @@ import org.springframework.boot.autoconfigure.web.reactive.ReactiveWebServerFact
 import org.springframework.boot.autoconfigure.web.reactive.WebFluxAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.reactive.error.ErrorWebFluxAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * @author Dave Syer
  *
  */
 @Configuration(proxyBeanMethods = false)
+@Import(BasicConfigurations.class)
 @ImportAutoConfiguration({ WebFluxAutoConfiguration.class,
 		ReactiveWebServerFactoryAutoConfiguration.class,
-		ErrorWebFluxAutoConfiguration.class, HttpHandlerAutoConfiguration.class,
-		BasicConfigurations.class })
+		ErrorWebFluxAutoConfiguration.class, HttpHandlerAutoConfiguration.class })
 public class WebFluxConfigurations {
 
 }
