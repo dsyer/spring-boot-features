@@ -1,0 +1,47 @@
+Experimental library with aspects for overriding `spring.factories` in Spring Boot. Example:
+
+```java
+@SpringBootApplication(proxyBeanMethods = false)
+@SpringApplicationCustomizers(SimpleFactories.class)
+public class InterceptorApplication {
+
+	public static void main(String[] args) {
+		AgentInstaller.install();
+		SpringApplication.run(InterceptorApplication.class, args);
+	}
+
+}
+
+class SimpleFactories implements SpringApplicationCustomizer {
+
+	@Override
+	public void customize(SpringApplication application) {
+		application.addListeners(new BackgroundPreinitializer(),
+				new ConfigFileApplicationListener(), new LoggingApplicationListener());
+		application.addInitializers(new ContextIdApplicationContextInitializer());
+	}
+
+}
+```
+
+Note the usage of `AgentInstaller` *before* the first reference to `SpringApplication`. Instead of installing the agent programmatically like this, you can add it as a command line argument, e.g.
+
+```
+java -javaagent:${HOME}/.m2/repository/org/aspectj/aspectjweaver/1.9.2/aspectjweaver-1.9.2.jar ...
+```
+
+(you can use `${system_property:user.home}` instead of `${HOME}` in an Eclipse launcher).
+
+The `SpringApplicationCustomizer` is used instead of `spring.factories` for the listeners and initializers in the app. Tests also work (with JUnit4) as long as you use the custom runner:
+
+```java
+@RunWith(CustomizedSpringRunner.class)
+@SpringBootTest
+public class InterceptorApplicationTests {
+
+	@Test
+	public void contextLoads() {
+	}
+
+}
+```
