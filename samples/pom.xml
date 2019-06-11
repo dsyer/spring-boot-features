@@ -9,14 +9,23 @@
 	</parent>
 
 	<groupId>com.example</groupId>
-	<artifactId>parent-features</artifactId>
+	<artifactId>parent-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Parent Features</name>
+	<name>Parent Demo</name>
 
 	<modules>
-		<module>lib</module>
-		<module>samples</module>
+		<module>actuator</module>
+		<module>jackson</module>
+		<module>application</module>
+		<module>db</module>
+		<module>jpa</module>
+		<module>mustache</module>
+		<module>secure</module>
+		<module>tomcat</module>
+		<module>mongo</module>
+		<module>orm</module>
+		<module>server</module>
 	</modules>
 
 	<properties>
