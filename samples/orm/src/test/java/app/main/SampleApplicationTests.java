@@ -16,13 +16,11 @@
 
 package app.main;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.server.WebHandler;
 
@@ -30,8 +28,7 @@ import org.springframework.web.server.WebHandler;
  * @author Dave Syer
  *
  */
-@SpringBootTest(properties = "spring.functional.enabled=false")
-@RunWith(SpringRunner.class)
+@SpringBootTest
 public class SampleApplicationTests {
 
 	@Autowired
@@ -39,14 +36,15 @@ public class SampleApplicationTests {
 
 	private WebTestClient client;
 
-	@Before
+	@BeforeEach
 	public void init() {
 		client = WebTestClient.bindToWebHandler(webHandler).build();
 	}
 
 	@Test
 	public void test() {
-		client.get().uri("/").exchange().expectBody(String.class).isEqualTo("{\"value\":\"Hello\"}");
+		client.get().uri("/").exchange().expectBody(String.class)
+				.isEqualTo("{\"value\":\"Hello\"}");
 	}
 
 }

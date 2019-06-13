@@ -26,6 +26,7 @@
 		<module>mongo</module>
 		<module>orm</module>
 		<module>server</module>
+		<module>petclinic</module>
 	</modules>
 
 	<properties>

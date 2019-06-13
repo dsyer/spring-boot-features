@@ -19,6 +19,7 @@ package org.springframework.boot.config;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration;
+import org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
@@ -29,7 +30,7 @@ import org.springframework.context.annotation.Import;
 @Configuration(proxyBeanMethods = false)
 @Import(BasicConfigurations.class)
 @ImportAutoConfiguration({ JdbcTemplateAutoConfiguration.class,
-		DataSourceAutoConfiguration.class })
+		DataSourceAutoConfiguration.class, TransactionAutoConfiguration.class })
 public class JdbcConfigurations {
 
 }
