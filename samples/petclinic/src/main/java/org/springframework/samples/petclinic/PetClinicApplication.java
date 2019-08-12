@@ -32,6 +32,7 @@ import org.springframework.boot.config.SpringBootFeaturesApplication;
 import org.springframework.boot.config.WebMvcConfigurations;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.scheduling.concurrent.ConcurrentTaskExecutor;
 
@@ -41,8 +42,9 @@ import org.springframework.scheduling.concurrent.ConcurrentTaskExecutor;
  * @author Dave Syer
  *
  */
-@SpringBootFeaturesApplication({ MessageSourceAutoConfiguration.class,
-		JpaDataConfigurations.class, WebMvcConfigurations.class,
+@SpringBootFeaturesApplication({ JpaDataConfigurations.class,
+		WebMvcConfigurations.class })
+@ImportAutoConfiguration({ MessageSourceAutoConfiguration.class,
 		ThymeleafAutoConfiguration.class, CacheAutoConfiguration.class })
 @EntityScan
 public class PetClinicApplication {
@@ -62,6 +64,6 @@ public class PetClinicApplication {
 
 @ConditionalOnClass(name = "org.springframework.boot.actuate.endpoint.annotation.Endpoint")
 @Configuration
-@ImportAutoConfiguration({ HealthEndpointConfigurations.class })
+@Import({ HealthEndpointConfigurations.class })
 class ApplicationActuatorConfiguration {
 }
