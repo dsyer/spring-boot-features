@@ -16,20 +16,17 @@
 
 package org.springframework.boot.config;
 
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 
 /**
  * @author Dave Syer
  *
  */
 @Configuration(proxyBeanMethods = false)
-@Import(BasicConfigurations.class)
-@ImportAutoConfiguration({ DataSourceAutoConfiguration.class,
+@SpringApplicationFeatures({ BasicConfigurations.class, DataSourceAutoConfiguration.class,
 		TransactionAutoConfiguration.class, HibernateJpaAutoConfiguration.class })
 public class HibernateConfigurations {
 

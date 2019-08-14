@@ -16,7 +16,6 @@
 
 package org.springframework.boot.config;
 
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration;
 import org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +25,7 @@ import org.springframework.context.annotation.Configuration;
  *
  */
 @Configuration(proxyBeanMethods = false)
-@ImportAutoConfiguration({ ConfigurationPropertiesAutoConfiguration.class,
+@SpringApplicationFeatures({ ConfigurationPropertiesAutoConfiguration.class,
 		PropertyPlaceholderAutoConfiguration.class })
 public class BasicConfigurations {
 

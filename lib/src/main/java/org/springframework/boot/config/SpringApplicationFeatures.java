@@ -33,10 +33,13 @@ import org.springframework.core.annotation.AliasFor;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import(Object.class)
+@Import({SpringApplicationFeaturesImportSelector.class, SpringApplicationFeaturesDeferredImportSelector.class})
 public @interface SpringApplicationFeatures {
 
-	@AliasFor(annotation = Import.class)
+	@AliasFor("classes")
 	Class<?>[] value() default {};
+
+	@AliasFor("value")
+	Class<?>[] classes() default {};
 
 }

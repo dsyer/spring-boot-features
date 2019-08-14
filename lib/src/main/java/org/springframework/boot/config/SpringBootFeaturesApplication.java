@@ -50,4 +50,7 @@ public @interface SpringBootFeaturesApplication {
 	@AliasFor(annotation = SpringApplicationFeatures.class)
 	Class<?>[] value() default {};
 
+	@AliasFor(annotation = SpringApplicationFeatures.class)
+	Class<?>[] classes() default {};
+
 }

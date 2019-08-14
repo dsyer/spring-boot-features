@@ -16,18 +16,15 @@
 
 package org.springframework.boot.config;
 
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.jdbc.JdbcRepositoriesAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 
 /**
  * @author Dave Syer
  *
  */
 @Configuration(proxyBeanMethods = false)
-@Import(JdbcConfigurations.class)
-@ImportAutoConfiguration({ JdbcRepositoriesAutoConfiguration.class })
+@SpringApplicationFeatures({ JdbcConfigurations.class, JdbcRepositoriesAutoConfiguration.class })
 public class JdbcDataConfigurations {
 
 }

@@ -16,18 +16,15 @@
 
 package org.springframework.boot.config;
 
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 
 /**
  * @author Dave Syer
  *
  */
 @Configuration(proxyBeanMethods = false)
-@Import(BasicConfigurations.class)
-@ImportAutoConfiguration({ JacksonAutoConfiguration.class })
+@SpringApplicationFeatures({ BasicConfigurations.class, JacksonAutoConfiguration.class })
 public class JacksonConfigurations {
 
 }

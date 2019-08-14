@@ -19,7 +19,6 @@ package org.springframework.samples.petclinic;
 import java.util.Map;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration;
@@ -28,11 +27,11 @@ import org.springframework.boot.autoconfigure.orm.jpa.EntityManagerFactoryBuilde
 import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration;
 import org.springframework.boot.config.HealthEndpointConfigurations;
 import org.springframework.boot.config.JpaDataConfigurations;
+import org.springframework.boot.config.SpringApplicationFeatures;
 import org.springframework.boot.config.SpringBootFeaturesApplication;
 import org.springframework.boot.config.WebMvcConfigurations;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.scheduling.concurrent.ConcurrentTaskExecutor;
 
@@ -43,8 +42,7 @@ import org.springframework.scheduling.concurrent.ConcurrentTaskExecutor;
  *
  */
 @SpringBootFeaturesApplication({ JpaDataConfigurations.class,
-		WebMvcConfigurations.class })
-@ImportAutoConfiguration({ MessageSourceAutoConfiguration.class,
+		WebMvcConfigurations.class, MessageSourceAutoConfiguration.class,
 		ThymeleafAutoConfiguration.class, CacheAutoConfiguration.class })
 @EntityScan
 public class PetClinicApplication {
@@ -64,6 +62,6 @@ public class PetClinicApplication {
 
 @ConditionalOnClass(name = "org.springframework.boot.actuate.endpoint.annotation.Endpoint")
 @Configuration
-@Import({ HealthEndpointConfigurations.class })
+@SpringApplicationFeatures({ HealthEndpointConfigurations.class })
 class ApplicationActuatorConfiguration {
 }

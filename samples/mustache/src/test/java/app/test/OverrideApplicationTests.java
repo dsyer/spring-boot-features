@@ -27,7 +27,6 @@ import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration;
 import org.springframework.boot.config.SpringBootFeaturesApplication;
 import org.springframework.boot.config.WebFluxConfigurations;
@@ -46,7 +45,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Dave Syer
  *
  */
-@SpringBootTest(classes = {OverrideApplication.class, SampleController.class})
+@SpringBootTest(classes = { OverrideApplication.class, SampleController.class })
 public class OverrideApplicationTests {
 
 	@Autowired
@@ -65,8 +64,8 @@ public class OverrideApplicationTests {
 				.value(value -> assertThat(value).contains("Msg: Hello"));
 	}
 
-	@SpringBootFeaturesApplication(WebFluxConfigurations.class)
-	@ImportAutoConfiguration(MustacheAutoConfiguration.class)
+	@SpringBootFeaturesApplication({ WebFluxConfigurations.class,
+			MustacheAutoConfiguration.class })
 	static class OverrideApplication {
 
 		public static void main(String[] args) throws Exception {
@@ -84,7 +83,7 @@ public class OverrideApplicationTests {
 		}
 
 	}
-	
+
 	@Controller
 	static class SampleController {
 

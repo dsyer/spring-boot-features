@@ -16,21 +16,18 @@
 
 package org.springframework.boot.config;
 
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.mongo.MongoReactiveDataAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.mongo.MongoReactiveRepositoriesAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoReactiveAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 
 /**
  * @author Dave Syer
  *
  */
 @Configuration(proxyBeanMethods = false)
-@Import(BasicConfigurations.class)
-@ImportAutoConfiguration({ MongoReactiveAutoConfiguration.class,
+@SpringApplicationFeatures({BasicConfigurations.class, MongoReactiveAutoConfiguration.class,
 		EmbeddedMongoAutoConfiguration.class, MongoReactiveDataAutoConfiguration.class,
 		MongoReactiveRepositoriesAutoConfiguration.class })
 public class ReactiveMongoDataConfigurations {
