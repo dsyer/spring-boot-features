@@ -18,7 +18,6 @@ package org.springframework.boot.config;
 
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityRequestMatcherProviderAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 
@@ -29,7 +28,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration(proxyBeanMethods = false)
 @SpringApplicationFeatures({ WebMvcConfigurations.class, SecurityAutoConfiguration.class,
 		UserDetailsServiceAutoConfiguration.class,
-		SecurityRequestMatcherProviderAutoConfiguration.class,
 		SecurityFilterAutoConfiguration.class })
 public class ServletSecurityConfigurations {
 
