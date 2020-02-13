@@ -1,0 +1,4 @@
+org.springframework.context.ApplicationListener=\
+app.main.bench.BeanCountingApplicationListener,\
+app.main.bench.StartupApplicationListener,\
+app.main.bench.ShutdownApplicationListener
