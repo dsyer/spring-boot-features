@@ -18,8 +18,8 @@ package org.springframework.boot.config;
 
 import org.springframework.boot.actuate.autoconfigure.endpoint.EndpointAutoConfiguration;
 import org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointAutoConfiguration;
+import org.springframework.boot.actuate.autoconfigure.health.HealthContributorAutoConfiguration;
 import org.springframework.boot.actuate.autoconfigure.health.HealthEndpointAutoConfiguration;
-import org.springframework.boot.actuate.autoconfigure.health.HealthIndicatorAutoConfiguration;
 import org.springframework.boot.actuate.autoconfigure.info.InfoEndpointAutoConfiguration;
 import org.springframework.boot.actuate.autoconfigure.web.reactive.ReactiveManagementContextAutoConfiguration;
 import org.springframework.boot.actuate.autoconfigure.web.server.ManagementContextAutoConfiguration;
@@ -33,10 +33,9 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnClass(name = "org.springframework.boot.actuate.endpoint.annotation.Endpoint")
 @Configuration(proxyBeanMethods = false)
 @SpringApplicationFeatures({ BasicConfigurations.class, EndpointAutoConfiguration.class,
-		HealthIndicatorAutoConfiguration.class, HealthEndpointAutoConfiguration.class,
+		HealthContributorAutoConfiguration.class, HealthEndpointAutoConfiguration.class,
 		InfoEndpointAutoConfiguration.class, WebEndpointAutoConfiguration.class,
-		ReactiveManagementContextAutoConfiguration.class,
-		ManagementContextAutoConfiguration.class })
+		ReactiveManagementContextAutoConfiguration.class, ManagementContextAutoConfiguration.class })
 public class HealthEndpointConfigurations {
 
 }
