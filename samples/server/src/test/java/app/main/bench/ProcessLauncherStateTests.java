@@ -16,9 +16,12 @@
 
 package app.main.bench;
 
-import app.main.bench.CaptureSystemOutput.OutputCapture;
 import app.main.bench.SampleBenchmarkIT.MainState;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import org.springframework.boot.test.system.CapturedOutput;
+import org.springframework.boot.test.system.OutputCaptureExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,11 +29,11 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Dave Syer
  *
  */
-@CaptureSystemOutput
+@ExtendWith(OutputCaptureExtension.class)
 public class ProcessLauncherStateTests {
 
 	@Test
-	public void vanilla(OutputCapture output) throws Exception {
+	public void vanilla(CapturedOutput output) throws Exception {
 		MainState state = new MainState();
 		// state.addArgs("-agentlib:jdwp=transport=dt_socket,server=y,address=8000");
 		state.before();
@@ -41,7 +44,7 @@ public class ProcessLauncherStateTests {
 	}
 
 	@Test
-	public void actr(OutputCapture output) throws Exception {
+	public void actr(CapturedOutput output) throws Exception {
 		// System.setProperty("bench.args",
 		// "-agentlib:jdwp=transport=dt_socket,server=y,address=8000");
 		MainState state = new MainState();

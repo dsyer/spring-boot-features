@@ -17,8 +17,10 @@
 package org.springframework.samples.petclinic.bench;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import org.springframework.samples.petclinic.bench.CaptureSystemOutput.OutputCapture;
+import org.springframework.boot.test.system.CapturedOutput;
+import org.springframework.boot.test.system.OutputCaptureExtension;
 import org.springframework.samples.petclinic.bench.PetClinicBenchmarkIT.MainState;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,33 +29,31 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Dave Syer
  *
  */
-@CaptureSystemOutput
+@ExtendWith(OutputCaptureExtension.class)
 public class ProcessLauncherStateTests {
 
-    @Test
-    public void vanilla(OutputCapture output) throws Exception {
-        System.setProperty("bench.args",
-                "-Dspring.main.lazy-initialization=false");
-        MainState state = new MainState();
-        // state.addArgs("-agentlib:jdwp=transport=dt_socket,server=y,address=8000");
-        state.before();
-        state.run();
-        state.after();
-        assertThat(output.toString()).contains("Benchmark app started");
-        assertThat(output.toString()).doesNotContain("/manage");
-    }
+	@Test
+	public void vanilla(CapturedOutput output) throws Exception {
+		System.setProperty("bench.args", "-Dspring.main.lazy-initialization=false");
+		MainState state = new MainState();
+		// state.addArgs("-agentlib:jdwp=transport=dt_socket,server=y,address=8000");
+		state.before();
+		state.run();
+		state.after();
+		assertThat(output.toString()).contains("Benchmark app started");
+		assertThat(output.toString()).doesNotContain("/manage");
+	}
 
-    @Test
-    public void actr(OutputCapture output) throws Exception {
-        System.setProperty("bench.args",
-                "-Dspring.main.lazy-initialization=false");
-        MainState state = new MainState();
-        state.setProfiles("actr");
-        state.before();
-        state.run();
-        state.after();
-        assertThat(output.toString()).contains("Benchmark app started");
-        assertThat(output.toString()).contains("/manage");
-    }
+	@Test
+	public void actr(CapturedOutput output) throws Exception {
+		System.setProperty("bench.args", "-Dspring.main.lazy-initialization=false");
+		MainState state = new MainState();
+		state.setProfiles("actr");
+		state.before();
+		state.run();
+		state.after();
+		assertThat(output.toString()).contains("Benchmark app started");
+		assertThat(output.toString()).contains("/manage");
+	}
 
 }
