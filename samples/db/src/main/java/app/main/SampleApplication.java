@@ -1,5 +1,10 @@
 package app.main;
 
+import app.main.foo.Foo;
+import app.main.foo.FooRepository;
+import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.config.JdbcConfigurations;
@@ -11,11 +16,6 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
-
-import app.main.foo.Foo;
-import app.main.foo.FooRepository;
-import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 
 @SpringBootFeaturesApplication({ JdbcConfigurations.class, WebFluxConfigurations.class })
 public class SampleApplication {
@@ -40,7 +40,7 @@ public class SampleApplication {
 	public RouterFunction<?> userEndpoints() {
 		return route(GET("/"),
 				request -> ok().body(Mono.fromCallable(() -> entities.find(1L))
-						.subscribeOn(Schedulers.elastic()), Foo.class));
+						.subscribeOn(Schedulers.boundedElastic()), Foo.class));
 	}
 
 	public static void main(String[] args) {

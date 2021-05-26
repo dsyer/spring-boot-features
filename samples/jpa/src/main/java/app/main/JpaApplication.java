@@ -47,7 +47,7 @@ public class JpaApplication {
 	public RouterFunction<?> userEndpoints() {
 		return route(GET("/"),
 				request -> ok().body(Mono.fromCallable(() -> foos.findById(1L).get())
-						.subscribeOn(Schedulers.elastic()), Foo.class));
+						.subscribeOn(Schedulers.boundedElastic()), Foo.class));
 	}
 
 	public static void main(String[] args) {

@@ -52,7 +52,7 @@ public class SampleApplication {
 				request -> ok().body(Mono
 						.fromCallable(
 								() -> entities.createEntityManager().find(Foo.class, 1L))
-						.subscribeOn(Schedulers.elastic()), Foo.class));
+						.subscribeOn(Schedulers.boundedElastic()), Foo.class));
 	}
 
 	public static void main(String[] args) {
